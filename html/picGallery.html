@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>picGallery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" rel="stylesheet"
+        crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="../css/picGallery.css?V1">
+</head>
+
+<body onload="playAudio()">
+
+    <div class="container-fluid">
+        <div class="row p-3 align-content-center ">
+            <div class=" text-light d-flex">
+                <i class="fa-solid fa-stop p-1 " onclick="pauseAudio()"></i>
+                <p class="text-light d-flex " id="stopMessage" onclick="showMessage()"> click me to stop</p>
+                <audio id="meee">
+                    <source src="../images/Anna.mp3" type="audio/ogg">
+                    <source src="../images/Anna.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <div class="  position-absolute top-0 end-0 text-light" id="timeBox">
+
+
+
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-6 justify-content-center">
+                <div class="row main justify-content-center ">
+                    <img class="img-fluid m-3 rounded-circle " src="../images/3.jpg" alt="">
+                </div>
+                <div class="row justify-content-center menu ">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+
+        let items2 = [
+            { "pic": "1.jpg", "color": "#1D1D77" },
+            { "pic": "2.jpg", "color": " #3859AC" },
+            { "pic": "3.jpg", "color": "#246FF0" },
+            { "pic": "4.jpg", "color": "#4677C7" },
+        ]
+
+        for (let i = 0; i < items2.length; i++) {
+            let picsDiv = document.createElement("div");
+            picsDiv.setAttribute("class", "col-2");
+            let pics = document.createElement("img");
+            pics.setAttribute("src", "../images/" + items2[i].pic);
+            pics.setAttribute("class", "img-fluid");
+            pics.style.cssText =
+                `border-roun
+                 border:1px solid blue;
+                 border-radius: 460%;     
+                 margin-top:5px;
+                 box-shadow: 0px 0px 15px ;
+        `
+            pics.addEventListener("click", function () {
+                handler(i)
+            });
+            picsDiv.appendChild(pics);
+            document.querySelector("div.menu").appendChild(picsDiv);
+        }
+
+        function handler(newpicindex) {
+            document.querySelectorAll("img.img-fluid")[0].setAttribute("src", "../images/" + items2[newpicindex].pic);
+            document.body.style.backgroundColor = items2[newpicindex].color;
+        }
+        // 
+        let myPlayer = setTimeout(playAudio, 5000)
+
+        function playAudio() {
+            document.getElementById("meee").play();
+        }
+        function pauseAudio() {
+            document.getElementById("meee").pause();
+        }
+
+        // اگر برنامه اجرا شد دیگر با استاپ متوقف  نمیشود این برای  قبل از اجرا است 
+
+        // ****
+        setInterval(myTimer(), 1000);
+
+        function myTimer() {
+            const date = new Date();
+            document.getElementById("timeBox").innerHTML = date.toLocaleTimeString();
+
+        }
+
+
+        // 
+        function showMessage() {
+            document.getElementById("stopMessage").innerHTML = " stop";
+        }
+
+
+    </script>
+
+    <!--
+          document.body.style.backgroundImage = "../images/1.jpg"
+        یک اسلاید شو بسازیم که  رنگ زمینه دائم هر 5 ثانیه عوض شود
+     با کلیک روی هر عکس بکگراند همان عکس شد
+        let items = [
+            "1.jpg", "2.jpg", "3.jpg", "2.jpg"
+        ]
+        زمانی که ویژگی سی اس اس تعریف میشود ان را در ``
+    از یک ابجکت ویژگی می خواهیم به ترتیب زیر باید کد بزنیم  نام ابجکت شماره ارایه درن ابجکت ویژگی ان
+          برای ادرس دهی سی اس اس باید ازurl استفاده کنیم
+    -->
+</body>
+
+</html>
